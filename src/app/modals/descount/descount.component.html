@@ -1,0 +1,21 @@
+<div class="modal-content">
+    <div class="modal-body">
+        <p *ngIf="progress">Making descount...</p>
+        <p *ngIf="done">sucssfully updated</p>
+        <p *ngIf="error">{{error}}</p>
+        <form *ngIf = "!done" class="forms-sample">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Old Price</label>
+                <input [(ngModel)]="oldPrice" name="oprice" type="number" class="n form-control" placeholder="price">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">New Price</label>
+                <input [(ngModel)]="newPrice" name="nprice" type="number" class="n form-control" placeholder="price">
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="!done" type="button" class="btn btn-success" (click)="submit()">Make it</button>
+        <button type="button" class="btn btn-light" (click)="closeModal('close')">Close</button>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add new item</h4>
+                <form class="forms-sample">
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">add image </label>
+                        <input id="myForm" type="file" name="file" (change)="onFileSelect($event.target.files)">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">name</label>
+                        <input id="name" required [(ngModel)]="name" name="name" type="text" class="n form-control" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">price</label>
+                        <input [(ngModel)]="price" name="price" type="number" class="n form-control" placeholder="price">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">description</label>
+                        <input [(ngModel)]="description" name="description" type="text" class="n form-control" placeholder="description">
+                    </div>
+                    <div class="form-group">
+                        <label for="">sizes</label>
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                            <mat-chip *ngFor="let size of sizes" [selectable]="selectable" [removable]="removable" (removed)="removesize(size)">
+                                {{size}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input class="n form-control" placeholder="new size.." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addsize($event)">
+                        </mat-chip-list>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">brand</label>
+                        <input [(ngModel)]="brand" name="brand" type="text" class="n form-control" placeholder="brand">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">colors</label>
+                        <input [(ngModel)]="colors" name="colors" type="text" class="n form-control" placeholder="colors">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect3">gender</label>
+                        <select [(ngModel)]="gender" name="gender" class="n form-control form-control-sm" id="exampleFormControlSelect3">
+                            <option>All</option>
+                            <option>Men</option>
+                            <option>Women</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect3">classification</label>
+                        <select [(ngModel)]="classification" name="classification" class="n form-control form-control-sm" id="exampleFormControlSelect3">
+                            <option>Shoes</option>
+                            <option>Accessories</option>
+                            <option>Cloth</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">tags</label>
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                            <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (removed)="removetag(tag)">
+                                {{tag}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input class="n form-control" placeholder="new tag.." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addtag($event)">
+                        </mat-chip-list>
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2" (click)="submitItem()">Submit</button>
+                    <div *ngIf="sending">Adding item....</div>
+                    <div *ngIf="done">Done</div>
+                    <div *ngIf="error" class="alert alert-warning" role="alert">
+                        {{error}}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

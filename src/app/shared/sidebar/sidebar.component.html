@@ -1,0 +1,49 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <a  class="nav-link">
+        <div class="nav-profile-text">
+          <span class="font-weight-bold mb-2">{{admin.username}}</span>
+          <span class="text-secondary text-small">{{admin.name}}</span>
+        </div>
+        <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': dashboard.isActive }">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive">
+        <span class="menu-title">Dashboard</span>
+        <i class="mdi mdi-home menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': orders.isActive }">
+      <a class="nav-link" routerLink="/admin/orders" routerLinkActive #orders="routerLinkActive">
+        <span class="menu-title">Orders</span>
+        <i class="mdi mdi-clipboard-text  menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': additem.isActive }">
+      <a class="nav-link" routerLink="/admin/add-item" routerLinkActive #additem="routerLinkActive">
+        <span class="menu-title">Adding new item</span>
+        <i class="mdi mdi-plus menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': items.isActive }">
+      <a class="nav-link" routerLink="/admin/items" routerLinkActive #items="routerLinkActive">
+        <span class="menu-title">All Items</span>
+        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+      </a>
+    </li>
+    <li *ngIf = "admin.manager" class="nav-item" [ngClass]="{ 'active': register.isActive }">
+        <a class="nav-link" routerLink="/admin/register" routerLinkActive #register="routerLinkActive">
+          <span class="menu-title">Add New Admin</span>
+          <i class="mdi mdi-account-multiple-plus menu-icon"></i>
+        </a>
+      </li>
+      <li *ngIf = "admin.manager" class="nav-item" [ngClass]="{ 'active': admins.isActive }">
+          <a class="nav-link" routerLink="admin/admins" routerLinkActive #admins="routerLinkActive">
+            <span class="menu-title">All Admins</span>
+            <i class="mdi mdi-account-card-details menu-icon"></i>
+          </a>
+        </li>
+  </ul>
+</nav>

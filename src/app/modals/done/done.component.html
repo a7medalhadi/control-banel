@@ -1,0 +1,12 @@
+<div class="modal-content">
+    <div class="modal-body">
+      <p *ngIf="!done" >Mark order as done?!.</p>
+      <p *ngIf="progress">working on it...</p>
+      <p *ngIf="done" >done</p>
+      <p *ngIf="error" >{{error}}</p>
+    </div>
+    <div class="modal-footer">
+      <button *ngIf="!done" type="button" class="btn btn-danger" (click)="markAsDone()">Confirm</button>
+      <button type="button" class="btn btn-light" (click)="closeModal('close')">Close</button>
+    </div>
+  </div>

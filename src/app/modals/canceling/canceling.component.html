@@ -1,0 +1,13 @@
+    <div class="modal-content">
+      <div class="modal-body">
+        <p *ngIf="!done" >Delete Item?!.</p>
+        <p *ngIf="progress">deleting...</p>
+        <p *ngIf="done" >sucssfully deleted</p>
+        <p *ngIf="error" >{{error}}</p>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="!done" type="button" class="btn btn-danger" (click)="delete()">delete</button>
+        <button type="button" class="btn btn-light" (click)="closeModal('close')">Close</button>
+      </div>
+    </div>
+  

@@ -1,0 +1,109 @@
+<div class="header" >
+        <div class="form-group fo">
+            <label for="">classification</label>
+        <select (change)="classifeing()" [(ngModel)]="classification" class="form-control" id="exampleFormControlSelect2">
+          <option>All</option>
+          <option>Clothes</option>
+          <option>Shoes</option>
+          <option>Accessories</option>
+        </select>
+      </div>
+      <div class="form-group fo">
+          <label for="">gender</label>
+        <select (change)="classifeing()" [(ngModel)]="gender" class="form-control" id="exampleFormControlSelect2">
+          <option>All</option>
+          <option>Men</option>
+          <option>Women</option>
+          <option>Kids</option>
+        </select>
+      </div>
+      <div class="search-bar se">
+        <div class="search__container">
+          <input [(ngModel)]="searchFor" name="searchFor"  (keyup.enter)="search()" class="search__input" type="text" placeholder="search by name">
+        </div>
+      </div>
+</div>
+
+<button (click)="fetchData()" type="button" class="btn btn-outline-warning btn-icon-text exp">
+    <i class="mdi mdi-reload btn-icon-prepend"></i>                                                    
+    Reset
+  </button>
+
+<mat-accordion *ngFor = "let item of data" class="example-headers-align">
+    <mat-expansion-panel class = "exp">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{item.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{item.brand}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="container clearfix">
+                    <div class="col-50">
+                        <img class="item" src={{item.imgUrl}} alt="">
+                    </div>
+                    <div class="col-50">
+                        <div class="navigation">
+                            <nav class="site-nav">
+                                <a> {{item.gender}} / {{item.classification}}</a>
+                            </nav>
+                        </div>
+                        <div class="product-info">
+                            <div class="name">{{item.name}}</div>
+                        </div>
+                        <div class="product-details">
+                            <div class="condition">
+                                <span>:العلامة التجارية</span>
+                                <span>{{item.brand}}</span>
+                            </div>
+                            <div *ngIf="!noSizes" class="condition">
+                                <span>:المقاسات المتوفرة</span>
+                                <span>{{item.sizes}}</span>
+                            </div>
+                            <div class="condition">
+                                <span>:الألوان</span>
+                                <span>{{item.colors}}</span>
+                            </div>
+                            <div class="condition">
+                                <span>:عدد مرات البيع</span>
+                                <span>{{item.purchases}}</span>
+                            </div>
+                            <div class="condition">
+                                <span>:معلومات اضافية</span>
+                                <div class="sub-info-wrap">
+                                    <div class="sub-info">{{item.description}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="more-details">
+                            <div class="cta">
+                                <div class="selling-wrap">
+                                    <div class="text">سعر المنتج</div>
+                                    <div class="figure">
+                                        <span>SDG</span>{{item.price}}</div>
+                                </div>
+                                <button (click)="editeItem(item._id)" type="button" class="btn btn-outline-secondary btn-icon-text">
+                                    Edit
+                                    <i class="mdi mdi-file-check btn-icon-append"></i>
+                                  </button>
+                                  <button (click)="descount(item._id)" type="button" class="btn btn-gradient-success btn-icon-text">
+                                        descount
+                                        <i class="mdi mdi-cart "></i>
+                                      </button>
+                                  <button (click)="deleteItem(item._id)" type="button" class="btn btn-gradient-danger btn-icon-text">
+                                    <i class="mdi mdi-alert btn-icon-prepend"></i>            
+                                    delete
+                                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

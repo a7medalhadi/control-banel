@@ -1,0 +1,50 @@
+<div class="header">
+    <div class="form-group exp fo">
+        <label for="">Arrang By</label>
+        <select (change)="fetchData()" [(ngModel)]="arrangBy" class="form-control" id="exampleFormControlSelect2">
+            <option>Inprogress</option>
+            <option>Done</option>
+        </select>
+    </div>
+</div>
+
+<button (click)="fetchData()" type="button" class="btn btn-outline-success btn-icon-text exp">
+    <i class="mdi mdi-reload btn-icon-prepend"></i>
+    Refresh
+</button>
+
+<mat-accordion *ngFor="let order of orders" class="example-headers-align">
+    <mat-expansion-panel class="exp">
+        <mat-expansion-panel-header [ngClass]="order.order[0].status === status ? 'col': ''">
+            <mat-panel-title>
+                {{order.order[0].userName}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{order.order[0].userPhone}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+            <div *ngFor="let item of order.order" class="col-md-5 stretch-card grid-margin">
+                <div class="product-card">
+                    <div class="product-tumb">
+                        <img src={{item.itemImgUrl}} alt="">
+                    </div>
+                    <div class="product-details">
+                        <h4>
+                            <a (click)="navItem(item)">{{item.itemName}}</a>
+                        </h4>
+                        <p>{{item.itemSize}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button (click)="bill(order)" type="button" class="btn btn-gradient-secondary btn-icon-text fo">
+            Bill
+            <i class="mdi mdi-printer btn-icon-append"></i>
+        </button>
+        <button *ngIf="order.order[0].status !== status" (click)="done(order)" type="button" class="btn btn-outline-success btn-icon-text fo">
+            Done
+            <i class="mdi mdi-check btn-icon-append"></i>
+        </button>
+    </mat-expansion-panel>
+</mat-accordion>
