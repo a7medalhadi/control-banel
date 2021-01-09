@@ -21,9 +21,9 @@ export class AddingItemComponent implements OnInit {
   tags= [];
   sizes = [];
   name
-  price
+  price = '6000'
   brand
-  description
+  description = 'متوفر حاليا'
   gender
   classification
   colors
@@ -57,13 +57,13 @@ export class AddingItemComponent implements OnInit {
       console.log('done')
         this.formdata = new FormData()
        this.name = ""
-       this.price = 0
+       this.price = "6000"
        this.brand = ""
        this.gender = ""
        this.colors = ""
        this.classification = ""
-       this.description = ""
-       this.sizes = []
+       this.description = 'متوفر حاليا'
+       this.sizes = [];
        this.tags = []
        this.fileToUpload = ""
 
